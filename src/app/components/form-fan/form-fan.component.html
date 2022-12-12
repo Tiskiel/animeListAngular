@@ -1,0 +1,18 @@
+<p>form-fan works!</p>
+
+<form *ngIf="fanForm" [formGroup]="fanForm" (ngSubmit)="submitForm()">
+    <p>Nom* : <input formControlName="lastname"></p>
+    <p>Prénom* : <input formControlName="firstname"></p>
+    <p>Birthdate* : <input type="date" formControlName="birthdate"></p>
+    <p>Password* : <input type="password" formControlName="password"></p>
+    <p>E-mail* : <input formControlName="email"></p>
+    <button type="button" (click)="addAnime()">Ajoute anime</button>
+    <ul formArrayName="animeList">
+        <li *ngFor="let anime of getAnimeFanList().controls; let i = index">
+            Anime {{i+1}} : <input [formControlName]="i">
+        </li>
+    </ul>
+    <button type="submit" [disabled]="!fanForm.valid">Valider</button>
+</form>
+
+<p>je suis apres</p>
