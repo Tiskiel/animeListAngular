@@ -5,5 +5,6 @@ export interface Fan {
     email: string,
     password: string,
     birthDate: Date,
-    animeList: string[]
+    animeList: string[],
+    isVisible : boolean
 }

@@ -1,7 +1,19 @@
-<p>show-fan works!</p>
+<button (click)="newFan()">Ajouter un fan</button>
 
 <ul *ngFor="let fan of getFanList(); let i = index">
     <li>
-        Fan {{i}} {{fan.lastname}} {{fan.firstname}}
+        <p>Fan {{i}} | {{fan.lastname}} {{fan.firstname}}</p>
+        <p>{{fan.email}} | {{fan.birthDate}}</p><button (click)="updatePage(i)">Update</button>
+        <button (click)="showToggle(i)">Show animes</button>
+        <div *ngIf="fan.isVisible">
+            <span><input type="text" [(ngModel)]="newAnime"></span>
+            <span><button (click)="addOneAnime(i)">Add</button></span>
+            <ul>
+                <li *ngFor="let anime of fan.animeList; let j = index">
+                    {{i+1}} | {{anime}} <button (click)="deleteAnime(i, j)">X</button>
+                </li>
+            </ul>
+        </div>
+
     </li>
 </ul>

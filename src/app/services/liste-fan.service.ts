@@ -30,4 +30,8 @@ export class ListeFanService {
   getFan(index: number): Fan {
     return this.listFan[index]
   }
+
+  deleteOneAnimeOfFanList(indexFan : number, indexAnime : number) {
+    this.listFan[indexFan].animeList.splice(indexAnime, 1)
+  }
 }

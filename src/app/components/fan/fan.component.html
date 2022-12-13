@@ -1,1 +1,41 @@
 <p>fan works!</p>
+
+<form *ngIf="fanForm" [formGroup]="fanForm" (ngSubmit)="submitForm()">
+    <span>Nom* : <input formControlName="lastname"></span>
+    <span *ngIf="fanForm.controls['lastname'].invalid && fanForm.controls['lastname'].touched" style="color: red">
+        Le nom est requis
+    </span>
+    <br />
+    <br />
+    <span>Prénom* : <input formControlName="firstname"></span>
+    <span *ngIf="fanForm.controls['firstname'].errors" style="color: red">
+        Le prénom est requis
+    </span>
+    <br />
+    <br />
+    <span>Birthdate* : <input type="date" formControlName="birthdate"></span>
+    <span *ngIf="fanForm.controls['birthdate'].errors" style="color : red;">
+        {{fanForm.controls['birthdate'].errors['error']}}
+    </span>
+    <br />
+    <br />
+    <span>Password* : <input type="password" formControlName="password"></span>
+    <span *ngIf="fanForm.controls['password'].invalid && fanForm.controls['password'].touched" style="color : red;">
+        Le mot de pass doit faire minimum 8 caractères et maximum 24 caractères
+    </span>
+    <br />
+    <br />
+    <span>E-mail* : <input formControlName="email"></span>
+    <!-- <span *ngIf="fanForm.controls['E-mail'].errors" style="color: red">
+        L'email est requis. Voici un exemple => hello@world.be
+    </span> -->
+    <br />
+    <br />
+    <button type="button" (click)="addAnime()">Ajoute anime</button>
+    <ul formArrayName="animeList">
+        <li *ngFor="let anime of getAnimeFanList().controls; let i = index">
+            Anime {{i+1}} : <input [formControlName]="i">
+        </li>
+    </ul>
+    <button type="submit" [disabled]="!fanForm.valid">Valider</button>
+</form>
